@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const port = 3000;
 
 app.use('public', express.static('public'));
 app.use(morgan(':method :url :status - :response-time ms'));
@@ -34,4 +33,5 @@ app.get('/user', function (req, res) {
   console.log('----------Ends-------------');
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+module.exports = app;
