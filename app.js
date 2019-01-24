@@ -3,10 +3,10 @@ const morgan = require('morgan');
 
 const app = express();
 
+app.use(morgan(':method :url :status - :response-time ms'));
 app.use('/public', express.static('public', {
   maxAge: 3600000,
 }));
-app.use(morgan(':method :url :status - :response-time ms'));
 
 app.get('/', (req, res) => {
   console.log('-----------Start------------');
