@@ -1,54 +1,40 @@
 const http = require('http');
-const debug = require('debug');
 const app = require('../app');
+
 const port = 3000;
-
-
 app.set('port', port);
+
 
 const server = http.createServer(app);
 
 server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-
-/**
- * Event listener for HTTP server "error" event.
- */
-
-function onError(error) {
+server.on('error', (error) => {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error('Server A: ' + bind + ' requires elevated privileges');
+      // eslint-disable-next-line no-console
+      console.error(`Server A: ${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error('Server A: ' + bind + ' is already in use');
+      // eslint-disable-next-line no-console
+      console.error(`Server A: ${bind} is already in use`);
       process.exit(1);
       break;
     default:
       throw error;
   }
-}
+});
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
+server.on('listening', () => {
   const addr = server.address();
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Server A: ' + 'Listening on ' + bind);
-}
+  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+  // eslint-disable-next-line no-console
+  console.log(`Server A: Listening on ${bind}`);
+});

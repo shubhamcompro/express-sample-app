@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-a": "node ./bin/server-a.js",
-    "start-b": "node ./bin/server-b.js"
+    "start-b": "node ./bin/server-b.js",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,10 @@
     "debug": "^4.1.1",
     "express": "^4.16.4",
     "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0"
   }
 }
