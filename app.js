@@ -3,7 +3,7 @@ const morgan = require('morgan');
 
 const app = express();
 
-app.use('public', express.static('public'));
+app.use('/public', express.static('public'));
 app.use(morgan(':method :url :status - :response-time ms'));
 
 app.get('/', (req, res) => {
